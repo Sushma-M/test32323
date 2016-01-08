@@ -5,38 +5,52 @@
 Application.$controller("MainPageController", ["$scope", function ($scope) {
     "use strict";
 
-    /* perform any action on the variables within this block(on-page-load) */
+    /* perform any action with the variables inside this block(on-page-load) */
     $scope.onPageVariablesReady = function () {
         /*
          * variables can be accessed through '$scope.Variables' property here
-         * e.g. to get dataSet in a staticVariable named 'loggedInUser' use following script
-         * $scope.Variables.loggedInUser.getData()
+         * e.g. $scope.Variables.staticVariable1.getData()
          */
     };
-    /* perform any action on widgets within this block */
+    
+    /* perform any action with widgets inside this block */
     $scope.onPageReady = function () {
         /*
          * widgets can be accessed through '$scope.Widgets' property here
-         * e.g. to get value of text widget named 'username' use following script
-         * '$scope.Widgets.username.datavalue'
+         * e.g. $scope.Widgets.byId(), $scope.Widgets.byName()or access widgets by $scope.Widgets.widgetName
          */
     };
 
 }]);
+
+
+Application.$controller("grid1Controller", ["$scope",
+	function($scope) {
+		"use strict";
+		$scope.ctrlScope = $scope;
+	}
+]);
 </script>
 <script id="Main.variables.json">
 var _MainPage_Variables_ ={};
 </script>
 <script id="Main.html" type="text/ng-template">
-<wm-page data-ng-controller="MainPageController" name="mainpage" pagetitle="Main">
-    <wm-header content="header" name="header" height="auto"></wm-header>
-    <wm-top-nav name="topnav" content="topnav"></wm-top-nav>
-    <wm-content name="content">
-        <wm-left-panel columnwidth="2" name="leftpanel" content="leftnav"></wm-left-panel>
-        <wm-page-content columnwidth="8" paddingleft="15" paddingright="15" name="mainContent">
+<wm-page data-ng-controller="MainPageController" pagetitle="Main" name="page1">
+    <wm-content name="content1">
+        <wm-page-content columnwidth="12" name="page_content1">
+            <wm-grid readonlygrid="false" insertrow="true" updaterow="true" deleterow="true" dataset="bind:Variables.HrdbEmployeeData.dataSet" name="grid1" gridsearch="true">
+                <wm-grid-column binding="eid" caption="Eid" identity="" pcdisplay="true" mobiledisplay="true" integer="" readonly="false" primary-key="true"></wm-grid-column>
+                <wm-grid-column binding="firstname" caption="Firstname" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="lastname" caption="Lastname" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="street" caption="Street" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="city" caption="City" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="state" caption="State" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="zip" caption="Zip" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="birthdate" caption="Birthdate" assigned="" pcdisplay="true" mobiledisplay="true" date="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="picurl" caption="Picurl" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+                <wm-grid-column binding="jobtitle" caption="Jobtitle" assigned="" pcdisplay="true" mobiledisplay="true" string="" readonly="false"></wm-grid-column>
+            </wm-grid>
         </wm-page-content>
-        <wm-right-panel columnwidth="2" name="rightpanel" content="rightnav"></wm-right-panel>
     </wm-content>
-    <wm-footer name="footer" content="footer"></wm-footer>
 </wm-page>
 </script>
